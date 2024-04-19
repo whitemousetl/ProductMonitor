@@ -1,0 +1,121 @@
+﻿<Window x:Class="ProductMonitor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ProductMonitor"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Title="生产监控平台" Height="750" Width="1200">
+    <!--隐藏头部-->
+    <WindowChrome.WindowChrome>
+        <WindowChrome GlassFrameThickness="0"/>
+    </WindowChrome.WindowChrome>
+
+    <!--整个UI界面-->
+    <Grid>
+        <!--背景色渐变 画刷-->
+        <!--渐变从左上角到右下角-->
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="#ff285173" Offset="0"/>
+                <GradientStop Color="#ff244967" Offset="0.5"/>
+                <GradientStop Color="#ff14273a" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <!--把整个UI界面分为三行-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <!--第一行 自定义头部-->
+        <Grid Grid.Row="0">
+            <!--把第一行分为三列-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--第一列-->
+            <Image Source="/Resource/Images/Logo.png" Margin="10,7"/>
+
+            <!--第二列-->
+            <StackPanel Grid.Column="1" Margin="0 0 7 0" VerticalAlignment="Center">
+                <TextBlock Text="生产监控平台" FontSize="16" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock Text="阻碍你前行的，其实就是你自己" FontSize="12" VerticalAlignment="Center" Margin="0,2,0,0" Foreground="White"/>
+            </StackPanel>
+
+            <!--第三列-->
+            <StackPanel Grid.Column="2" WindowChrome.IsHitTestVisibleInChrome="True">
+                <!--最小化、最大化、关闭按钮-->
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Background="Transparent">
+                    <Button Content="&#xe624;" Height="35" Click="Min_Click" VerticalAlignment="Top" Style="{StaticResource OperateBtnStyle}"/>
+                    <Button Content="&#xe600;" Height="35" Click="MaxOrNormal_Click"  VerticalAlignment="Top" Style="{StaticResource OperateBtnStyle}"/>
+                    <Button Content="&#xe609;" Height="35" Click="Close_Click" VerticalAlignment="Top" Background="DarkRed" Style="{StaticResource OperateBtnStyle}"/>
+                </StackPanel>
+
+                <!--分割线-->
+                <Border BorderBrush="#5518aabd" BorderThickness="0,0,0,1"/>
+
+                <!--乱七八糟的线-->
+                <Border Height="15" >
+                    <Border.Background>
+                        <VisualBrush TileMode="FlipXY" Viewport="0,0,7,7" ViewportUnits="Absolute" >
+                            <VisualBrush.Visual>
+                                <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="Gray" StrokeThickness="1"></Line>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.Background>
+                </Border>
+
+            </StackPanel>
+        </Grid>
+
+        <!--分割线-->
+        <Border BorderBrush="#5518aabd" BorderThickness="0,0,0,1"/>
+
+        <!--第二行 内容 用户控件并嵌入到主界面-->
+        <Grid Grid.Row="1">
+            <ContentControl Content="{Binding MonitorUC}"/>
+        </Grid>
+
+        <!--第三行 底部-->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!--分割线-->
+            <Border BorderBrush="#5518aabd" BorderThickness="0,1,0,0"  VerticalAlignment="Bottom">
+                <Grid>
+                    
+                
+
+
+                <!--第一列-->
+                <!--乱七八糟的线-->
+                <Border Height="25" Grid.Column="0">
+                    <Border.Background>
+                        <VisualBrush TileMode="FlipXY" Viewport="0,0,7,7" ViewportUnits="Absolute" >
+                            <VisualBrush.Visual>
+                                <Line X1="0" Y1="10" X2="10" Y2="0" Stroke="Gray" StrokeThickness="1"/>
+                            </VisualBrush.Visual>
+                        </VisualBrush>
+                    </Border.Background>
+                </Border>
+
+                <!--第二列-->
+                <TextBlock FontWeight="Bold" FontSize="15" Margin="5 5 10 5" Grid.Column="1"
+                       Width="auto" Text="WhiteMouseTL 学习使用" VerticalAlignment="Center" 
+                       HorizontalAlignment="Right" Foreground="White"></TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+
+</Window>
